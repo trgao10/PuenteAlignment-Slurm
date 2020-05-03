@@ -7,8 +7,8 @@ meshesPath = '/home/trg17/Work/primate_inner_ear/mesh/ply/';
 
 %%%%% "outputPath" stores intermediate files, re-aligned meshes, and
 %%%%% morphologika files
-cluster_path = '/home/trg17/Work/primate_inner_ear/PuenteAlignment/cluster/';
-outputPath = '/home/trg17/Work/primate_inner_ear/PuenteAlignment/output/';
+cluster_path = '/home/trg17/Work/primate_inner_ear/PuenteAlignment-Slurm/cluster/';
+outputPath = '/home/trg17/Work/primate_inner_ear/PuenteAlignment-Slurm/output/';
 
 %%%%% set parameters for the algorithm
 restart = 1;
