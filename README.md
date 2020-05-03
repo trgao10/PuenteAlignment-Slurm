@@ -44,7 +44,8 @@ After the alignment process is completed, the result can be visualized using a j
 
 1. Move all output files ending with "_aligned.obj" from the subfolder *aligned/* (under the output folder specified in *code/jaddpath.m*) to the subfolder *viewer/aligned_meshes/*.
 2. Set up an HTTP server under the folder *viewer/*. 
-    For Python 2.x: `cd viewer/` and 
+
+   For Python 2.x: `cd viewer/` and 
 
         python -m SimpleHTTPServer 8000
 
