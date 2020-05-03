@@ -8,9 +8,8 @@ This is [Puente Alignment](https://github.com/trgao10/PuenteAlignment) backed by
 
 2. Launch `MATLAB` -- if your cluster is maintained using a module system, maybe first
 
-```
-module load matlab/2019b
-```
+        module load matlab/2019b
+
 
 The specific `MATLAB` version shouldn't matter too much; to the best of our knowledge this package relies on standard `MATLAB` functionalities.
 
@@ -26,9 +25,9 @@ This variant of the workflow is essentially the same as parallel execution in [P
 
 2. Set paths and parameters in *PuenteAlignment-Slurm/code/jadd_path.m*. In particular, set `slurm_partition` based on your Slurm configuration, and set `email_notification` to be notified of the job status.
 3. `cd` into the folder *PuenteAlignment-Slurm/code/*, type in `clusterPreprocess.m` then press `ENTER`. Check the status of the submitted jobs on Slurm using
-```
-squeue -u <*YourUserName*>
-```
+
+        squeue -u <*YourUserName*>
+
 4. After all jobs are completed, type in `clusterMapLowRes` then press `ENTER`.
 5. After all jobs are completed, type in `clusterReduceLowRes` then press `ENTER`. This generates low-resolution alignment results under folder `outputPath` specified in `jadd_path.m`.
 6. Type in `clusterMapHighRes` then press `ENTER` to submit high-resolution alignment jobs to the cluster. Use `squeue` to monitor job status.
@@ -45,16 +44,14 @@ After the alignment process is completed, the result can be visualized using a j
 
 1. Move all output files ending with "_aligned.obj" from the subfolder *aligned/* (under the output folder specified in *code/jaddpath.m*) to the subfolder *viewer/aligned_meshes/*.
 2. Set up an HTTP server under the folder *viewer/*. 
+    For Python 2.x: `cd viewer/` and 
 
-For Python 2.x: `cd viewer/` and 
-```
-python -m SimpleHTTPServer 8000
-```
+        python -m SimpleHTTPServer 8000
 
-For Python 3.x: `cd viewer/` and 
-```
-python -m http.server 8000
-```
+     For Python 3.x: `cd viewer/` and 
+
+        python -m http.server 8000
+
 3. Launch a browser window and visit [http://localhost:8000/auto3dgm.html](http://localhost:8000/auto3dgm.html).
 
 -----------
