@@ -7,9 +7,11 @@ This is [Puente Alignment](https://github.com/trgao10/PuenteAlignment) backed by
 1. Set paths and parameters in *PuenteAlignment-Slurm/code/jadd_path.m*. In particular, set `slurm_partition` based on your Slurm configuration, and set `email_notification` to be notified of the job status.
 
 2. Launch `MATLAB` -- if your cluster is maintained using a module system, maybe first
+
 ```
 module load matlab/2019b
 ```
+
 The specific `MATLAB` version shouldn't matter too much; to the best of our knowledge this package relies on standard `MATLAB` functionalities.
 
 3. `cd` into the folder *PuenteAlignment-Slurm/code/*, type in `clusterDriver.m` and press `ENTER`. The `MATLAB` console will halt until the entire computational pipeline terminates.
