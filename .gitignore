@@ -1,3 +1,5 @@
 cluster/
 output/
 viewer/aligned_meshes/
+*~
+.DS_Store

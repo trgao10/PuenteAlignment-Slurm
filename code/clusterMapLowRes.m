@@ -21,8 +21,9 @@ for ii = 1 : ds.n
     [ds.shape{ ii }.origV, ds.shape{ ii }.origF] = read_ply([meshesPath ds.names{ii} suffix]);
     ds.shape{ ii }.origV = (ds.shape{ ii }.origV)';
     ds.shape{ ii }.X              = cell( 1, ds.K );
+    ds.shape{ ii }.ind            = cell( 1, ds.K );
     fprintf('Getting Subsampled Mesh %s......', ds.names{ii});
-    ds.shape{ ii }.X{ ds.K }      = get_subsampled_shape( outputPath, ds.ids{ii}, ds.N( ds.K ), ssType );
+    [ds.shape{ ii }.X{ ds.K }, ds.shape{ ii }.ind{ ds.K }]      = get_subsampled_shape( outputPath, ds.ids{ii}, ds.N( ds.K ), ssType );
     fprintf('DONE\n');
     ds.shape{ ii }.center         = mean(  ds.shape{ ii }.X{ ds.K }, 2 );
     ds.shape{ ii }.scale          = scale( ds.shape{ ii }.X{ ds.K } );
