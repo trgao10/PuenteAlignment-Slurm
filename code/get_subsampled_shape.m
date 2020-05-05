@@ -7,18 +7,22 @@ if ischar(N)
     N = str2double(N);
 end
 
-sub_off_fn = [ dir 'subsampled' filesep num2str(id,'%.3d') '.off' ];
-off_fn     = [ dir 'original' filesep num2str(id,'%.3d') '.off' ];
+sub_off_fn = [dir 'subsampled' filesep num2str(id,'%.3d') '.off'];
+off_fn     = [dir 'original' filesep num2str(id,'%.3d') '.off'];
+ind_fn = [dir 'subsampled' filesep num2str(id,'%.3d') '_ind.mat'];
 
 if exist( sub_off_fn, 'file' )
-    [ X, tmp ]       = read_off( sub_off_fn );
+    X = read_off(sub_off_fn);
     n_subsampled_pts = size(X, 2);
+    ind = load(ind_fn);
+    ind = ind.ind;
 else
     X                = [];
     n_subsampled_pts = 0;
+    ind = [];
 end
 
-if ( n_subsampled_pts < N )
+if (n_subsampled_pts < N)
     disp(['Reading ' off_fn '...']);
     [V,F] = read_off( off_fn );
 %     V = V';
@@ -35,6 +39,7 @@ if ( n_subsampled_pts < N )
         mkdir([dir filesep 'subsampled']);
     end
     write_off( sub_off_fn, X, [1 2 3]'); %write_off breaks if there are no faces
+    save(ind_fn, 'ind');
 end
 
 end
