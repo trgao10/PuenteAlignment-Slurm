@@ -18,8 +18,8 @@ scale  = @(X) norm(center(X),'fro') ;
 
 ds.shape = cell ( 1, ds.n );
 for ii = 1 : ds.n
-    [ds.shape{ ii }.origV, ds.shape{ ii }.origF] = read_ply([meshesPath ds.names{ii} suffix]);
-    ds.shape{ ii }.origV = (ds.shape{ ii }.origV)';
+    [ds.shape{ ii }.origV, ds.shape{ ii }.origF] = read_off([meshesPath ds.names{ii} suffix]);
+%     ds.shape{ ii }.origV = (ds.shape{ ii }.origV)';
     ds.shape{ ii }.X              = cell( 1, ds.K );
     ds.shape{ ii }.ind            = cell( 1, ds.K );
     fprintf('Getting Subsampled Mesh %s......', ds.names{ii});
