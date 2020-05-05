@@ -8,7 +8,7 @@ if ischar(N)
 end
 
 sub_off_fn = [ dir 'subsampled' filesep num2str(id,'%.3d') '.off' ];
-ply_fn     = [ dir 'original' filesep num2str(id,'%.3d') '.ply' ];
+off_fn     = [ dir 'original' filesep num2str(id,'%.3d') '.off' ];
 
 if exist( sub_off_fn, 'file' )
     [ X, tmp ]       = read_off( sub_off_fn );
@@ -19,9 +19,9 @@ else
 end
 
 if ( n_subsampled_pts < N )
-    disp(['Reading ' ply_fn '...']);
-    [V,F] = read_ply( ply_fn );
-    V = V';
+    disp(['Reading ' off_fn '...']);
+    [V,F] = read_off( off_fn );
+%     V = V';
     disp('DONE');
     if strcmpi(ssType, 'fps')
         ind = subsample(V, N, X);

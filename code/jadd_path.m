@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% "meshesPath" is where the orignal meshes are located
 
-meshesPath = '/home/trg17/Work/primate_inner_ear/mesh/ply/';
+meshesPath = '/home/trg17/Work/primate_inner_ear/mesh/off/';
 
 %%%%% "outputPath" stores intermediate files, re-aligned meshes, and
 %%%%% morphologika files
