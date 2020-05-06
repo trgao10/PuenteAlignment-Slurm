@@ -64,8 +64,14 @@ fprintf(fid, '#!/bin/bash\n\n');
 for j=1:length(funcArg)
    if j==1
 	fprintf(fid, 'JOBID%d=$(sbatch -W --partition=%s --job-name=%s --output=%s/%%j.out --error=%s/%%j.error %s/%s.sh | cut -f 4 -d'' '')\n\necho $JOBID%d\n\n', j, slurm_partition, strrep(strrep(funcArg{j},'cluster',''),'Res',''), cluster_output_path, cluster_error_path, cluster_script_path, funcArg{j}, j);
+   elseif j==length(funcArg)
+       if (length(strfind(email_notification, '@')) == 1)
+           fprintf(fid, 'JOBID%d=$(sbatch -W --mail-type=ALL --mail-user=%s --partition=%s --dependency=afterok:$JOBID%d --job-name=%s --output=%s/%%j.out --error=%s/%%j.error %s/%s.sh | cut -f 4 -d'' '')\n\necho $JOBID%d\n\n', j, email_notification, slurm_partition, j-1, strrep(strrep(funcArg{j},'cluster',''),'Res',''), cluster_output_path, cluster_error_path, cluster_script_path, funcArg{j}, j);
+       else
+           fprintf(fid, 'JOBID%d=$(sbatch -W --partition=%s --dependency=afterok:$JOBID%d --job-name=%s --output=%s/%%j.out --error=%s/%%j.error %s/%s.sh | cut -f 4 -d'' '')\n\necho $JOBID%d\n\n', j, slurm_partition, j-1, strrep(strrep(funcArg{j},'cluster',''),'Res',''), cluster_output_path, cluster_error_path, cluster_script_path, funcArg{j}, j);
+       end
    else
-     fprintf(fid, 'JOBID%d=$(sbatch -W --partition=%s --dependency=afterok:$JOBID%d --job-name=%s --output=%s/%%j.out --error=%s/%%j.error %s/%s.sh | cut -f 4 -d'' '')\n\necho $JOBID%d\n\n', j, slurm_partition, j-1, strrep(strrep(funcArg{j},'cluster',''),'Res',''), cluster_output_path, cluster_error_path, cluster_script_path, funcArg{j}, j);
+       fprintf(fid, 'JOBID%d=$(sbatch -W --partition=%s --dependency=afterok:$JOBID%d --job-name=%s --output=%s/%%j.out --error=%s/%%j.error %s/%s.sh | cut -f 4 -d'' '')\n\necho $JOBID%d\n\n', j, slurm_partition, j-1, strrep(strrep(funcArg{j},'cluster',''),'Res',''), cluster_output_path, cluster_error_path, cluster_script_path, funcArg{j}, j);
    end
 end
 
