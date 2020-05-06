@@ -51,6 +51,12 @@ for ii = 1 : length( inds )
     write_obj([ds.msc.mesh_aligned_dir 'obj/' ds.names{ inds(ii) } '_aligned.obj'], alignedV, ds.shape{ inds(ii) }.origF);
     write_off([ds.msc.mesh_aligned_dir 'off/' ds.names{ inds(ii) } '_aligned.off'], alignedV, ds.shape{ inds(ii) }.origF);
 %     V = [ V ( view_rot * ga.R{ inds(ii) } * ds.shape{ inds(ii) }.lowres.V + repmat( [ offset*c 0 offset*r ]' , 1, size( ds.shape{ inds(ii) }.lowres.V , 2 ) ) ) ];
+    
+    ind_fn = fullfile(ds.msc.output_dir, 'subsampled', [ds.ids{inds(ii)} '_ind.mat']);
+    ind = load(ind_fn);
+    ind = ind.ind;
+    ind = ind * ga.P{inds(ii)};
+    save(ind_fn, 'ind');
 end
 
 %%% Add a cube to mark shape number 1
