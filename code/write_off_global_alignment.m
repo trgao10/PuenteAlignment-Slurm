@@ -32,6 +32,9 @@ end
 
 %Create vertices and faces of the resulting off file
 
+touch([ds.msc.mesh_aligned_dir 'obj/']);
+touch([ds.msc.mesh_aligned_dir 'off/']);
+
 V=[]; F=[];
 for ii = 1 : length( inds )
     if ( det( ga.R{ inds(ii) } ) < 0 ) % Need to invert faces orientation
@@ -45,8 +48,8 @@ for ii = 1 : length( inds )
         + repmat( [ offset*c 0 offset*r ]' , 1, size( ds.shape{ inds(ii) }.lowres.V , 2 ) ) )];
 %     alignedV = ga.R{ inds(ii) } * (ds.shape{ inds(ii) }.origV-repmat(ds.shape{ inds(ii) }.center, 1, size(ds.shape{ inds(ii) }.origV,2)))+repmat(ds.shape{ inds(ii) }.center, 1, size(ds.shape{ inds(ii) }.origV,2));
     alignedV = ga.R{ inds(ii) } * (center(ds.shape{ inds(ii) }.origV)/scale(center(ds.shape{ inds(ii) }.origV)));
-    write_obj([ds.msc.mesh_aligned_dir ds.names{ inds(ii) } '_aligned.obj'], alignedV, ds.shape{ inds(ii) }.origF);
-%     write_off([ds.msc.mesh_aligned_dir ds.names{ inds(ii) } '_aligned.off'], alignedV, ds.shape{ inds(ii) }.origF);
+    write_obj([ds.msc.mesh_aligned_dir 'obj/' ds.names{ inds(ii) } '_aligned.obj'], alignedV, ds.shape{ inds(ii) }.origF);
+    write_off([ds.msc.mesh_aligned_dir 'off/' ds.names{ inds(ii) } '_aligned.off'], alignedV, ds.shape{ inds(ii) }.origF);
 %     V = [ V ( view_rot * ga.R{ inds(ii) } * ds.shape{ inds(ii) }.lowres.V + repmat( [ offset*c 0 offset*r ]' , 1, size( ds.shape{ inds(ii) }.lowres.V , 2 ) ) ) ];
 end
 

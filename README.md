@@ -42,7 +42,7 @@ The entry point is the script `code/main.m`; see comments at the top of that scr
 #### WebGL-based Alignment Visualization
 After the alignment process is completed, the result can be visualized using a javascript-based viewer located under the folder *viewer/*. See [here](http://www.math.duke.edu/~trgao10/research/auto3dgm.html) for an online demo.
 
-1. Move all output files ending with "_aligned.obj" from the subfolder *aligned/* (under the output folder specified in *code/jaddpath.m*) to the subfolder *viewer/aligned_meshes/*.
+1. Move all output files ending with "_aligned.obj" from the subfolder *aligned/obj/* (under the output folder specified in *code/jaddpath.m*) to the subfolder *viewer/aligned_meshes/*.
 2. Set up an HTTP server under the folder *viewer/*. 
 
    For Python 2.x: `cd viewer/` and 
