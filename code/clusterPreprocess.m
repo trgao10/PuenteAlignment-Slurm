@@ -27,8 +27,8 @@ cellfun(@(a,b) copyfile(a,b),...
 disp('Done')
 
 %% paths to be passed as global constants
-ds.n                = length( ds.ids ); %Number of shapes
-ds.K                = length( ds.N ); %Number of levels
+ds.n                = length(ds.ids); %Number of shapes
+ds.K                = length(ds.N); %Number of levels
 ds.msc.mesh_dir     = meshesPath;
 ds.msc.output_dir   = outputPath;
 ds.msc.mesh_aligned_dir = [outputPath 'aligned/'];

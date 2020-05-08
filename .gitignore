@@ -3,3 +3,4 @@ output/
 viewer/aligned_meshes/
 *~
 .DS_Store
+*.R*

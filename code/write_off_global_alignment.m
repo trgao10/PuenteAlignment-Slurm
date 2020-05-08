@@ -8,11 +8,11 @@ center = @(X) X-repmat(mean(X,2),1,size(X,2));
 scale  = @(X) norm(center(X),'fro') ;
 
 % Parameters
-inds    = 1 : ds.n;
+inds    = 1:ds.n;
 if( nargin >= 4)
     inds    = varargin{1};
 end
-per_row = floor( sqrt( length( inds ) ) );
+per_row = floor(sqrt(length(inds)));
 if( nargin >= 5 )
     per_row = varargin{2};
 end
@@ -36,7 +36,7 @@ touch([ds.msc.mesh_aligned_dir 'obj/']);
 touch([ds.msc.mesh_aligned_dir 'off/']);
 
 V=[]; F=[];
-for ii = 1 : length( inds )
+for ii = 1 : length(inds)
     if ( det( ga.R{ inds(ii) } ) < 0 ) % Need to invert faces orientation
         F = [ F ( ds.shape{ inds(ii) }.lowres.F([2 1 3],:) + size(V,2) ) ];
     else
@@ -55,8 +55,10 @@ for ii = 1 : length( inds )
     ind_fn = fullfile(ds.msc.output_dir, 'subsampled', [ds.ids{inds(ii)} '_ind.mat']);
     ind = load(ind_fn);
     ind = ind.ind;
-    ind = ind * ga.P{inds(ii)};
-    save(ind_fn, 'ind');
+    if length(ind) == size(ga.P{inds(ii)},1)
+        ind = ind * ga.P{inds(ii)};
+        save(ind_fn, 'ind');
+    end
 end
 
 %%% Add a cube to mark shape number 1
