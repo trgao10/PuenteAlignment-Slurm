@@ -24,7 +24,7 @@ allow_reflection = 1; %%% if set to 0, no reflection will be allowed in
                       %%% the alignments
 max_iter = 1000; %%% maximum number of iterations for each pairwise alignment
 email_notification = 'gaotingran@gmail.com';
-slurm_partition = 'broadwl';
+slurm_partition = 'large-40core';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% NO NEED TO MODIFY ANYTHING OTHER THAN THIS FILE!
