@@ -6,10 +6,16 @@ if (restart == 1)
     system(['mkdir ' outputPath]);
 end
 
+fprintf('%s created\n', outputPath);
+
 touch([outputPath 'original/']);
+fprintf('%s created\n', [outputPath 'original/'])
 touch([outputPath 'subsampled/']);
+fprintf('%s created\n', [outputPath 'subsampled/'])
 touch([outputPath 'aligned/']);
+fprintf('%s created\n', [outputPath 'aligned/'])
 touch([outputPath 'jobs/']);
+fprintf('%s created\n', [outputPath 'jobs/'])
 
 set(0,'RecursionLimit',1500);
 rng('shuffle');
@@ -19,6 +25,7 @@ ds.N       = [iniNumPts, finNumPts];  % Number of points to spread
 ds.dataset = ''; % Used for pulling the files containing the meshes
 ds.run     = '';     % Used for writing output and intermediate files
 [ds.names, suffix] = getFileNames(meshesPath);
+
 ds.ids     = arrayfun(@(x) sprintf('%03d', x), 1:length(ds.names), 'UniformOutput', 0);
 disp('Copying files over...');
 cellfun(@(a,b) copyfile(a,b),...
@@ -41,7 +48,7 @@ if use_cluster == 0
         fprintf('DONE\n');
     end
 else
-    PBS = '#!/bin/sh\n\nmodule load matlab/2019b\n';
+    PBS = '#!/bin/sh\n\nmodule load matlab/2019a\n';
     script = 'matlab -nodesktop -nodisplay -nojvm -nosplash -r ' ;
     matlab_cmd = @( kk ) ['\"cd ' codePath 'code/; ' 'jadd_path; get_subsampled_shape(''' outputPath ''', ' ds.ids{kk} ', ' num2str(ds.N(ds.K)) ', ''' ssType '''); exit;\"\n'];
     pfj = [ds.msc.output_dir 'jobs/prep/'];

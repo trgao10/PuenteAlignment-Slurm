@@ -49,7 +49,7 @@ if strcmpi(type, 'mst')
         ga.R{ ii } = R;
         ga.P{ ii } = P;
     end
-    
+
     MSTPerEdgeFrustVec =...
         getPerEdgeFrustFromEdgePot(adjMat, RCell, cellfun(@(x) x', ga.R, 'UniformOutput', false));
     

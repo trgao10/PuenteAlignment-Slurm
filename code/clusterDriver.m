@@ -4,17 +4,27 @@
 jadd_path;
 
 if (restart == 1)
-    system('rm -rf cluster');
-    system('rm -rf output');
+    system("rm -rf "+cluster_path);
+    fprintf('%s removed\n', cluster_path);
+    system("rm -rf "+outputPath);
+    fprintf('%s removed\n', outputPath);
 end
 
 cluster_output_path = fullfile(cluster_path, 'output');
 cluster_error_path = fullfile(cluster_path, 'error');
 cluster_script_path = fullfile(cluster_path, 'script');
 
+fprintf('Creating %s...\n', cluster_output_path);
 touch(cluster_output_path);
+fprintf('%s created\n', cluster_output_path);
+
+fprintf('Creating %s...\n', cluster_error_path);
 touch(cluster_error_path);
+fprintf('%s created\n', cluster_error_path);
+
+fprintf('Creating %s...\n', cluster_script_path);
 touch(cluster_script_path);
+fprintf('%s created\n', cluster_script_path);
 
 delete(fullfile(cluster_output_path, '*'));
 delete(fullfile(cluster_error_path, '*'));
@@ -25,7 +35,7 @@ funcArg = {'clusterPreprocess', 'clusterMapLowRes',...
     'clusterReduceLowRes', 'clusterMapHighRes',...
     'clusterReduceHighRes', 'clusterPostprocessing'};
 
-PBS        = '#!/bin/sh\n\nmodule load matlab/2019b\n';
+PBS        = '#!/bin/sh\n\nmodule load matlab/2019a\n';
 script     = 'matlab -nodesktop -nodisplay -nosplash -r ' ;
 matlab_call = @(n) ['\"cd ' pwd '; ' funcArg{n} '; exit;\"\n'];
 
